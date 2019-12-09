@@ -23,4 +23,8 @@ router.get('/singin', (req, res, next) => {
 router.post('/singin', (req, res, next) => {
 
 });
+
+router.get('/profile', (req, res, next) => {
+    res.render('profile');
+})
 module.exports = router;

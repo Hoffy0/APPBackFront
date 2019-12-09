@@ -13,7 +13,7 @@ require('./passport/local-auth');
 // Ajustes Globales
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('port' , process.env.PORT || 3000);
+app.set('port' , process.env.PORT || 4001);
 app.engine('ejs', engine)
 app.set('view engine', 'ejs')
 
@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(session({
     secret: 'mysecretsession',
-    resave :false,
+    resave: false,
     saveUninitialized: false
 }));
 app.use(passport.initialize);
@@ -39,4 +39,3 @@ app.use(passport.session());
 
 //Routas
 app.use('/', require('./routes/index'));
-
