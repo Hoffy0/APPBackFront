@@ -12,7 +12,8 @@ router.get('/singup', (req, res, next) => {
 
 router.post('/singup', passport.authenticate('local-singup'), {
     succesRedirect: '/',
-    faildureRedirect: '/singup'
+    faildureRedirect: '/singup',
+    passReqToCallBack: true
 });
 
 router.get('/singin', (req, res, next) => {

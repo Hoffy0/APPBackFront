@@ -28,13 +28,14 @@ app.listen(app.get('port'), () => {
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
-app.use(passport.initialize);
-app.use(passport.session());
 app.use(session({
     secret: 'mysecretsession',
     resave :false,
     saveUninitialized: false
 }));
+app.use(passport.initialize);
+app.use(passport.session());
+
 
 //Routas
 app.use('/', require('./routes/index'));
