@@ -4,6 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 const passport = require('passport')
 const session = require('express-session');
+const flash = require('connect-flash');
 
 //Inicializaciones
 const app = express();
@@ -17,13 +18,6 @@ app.set('port' , process.env.PORT || 4001);
 app.engine('ejs', engine)
 app.set('view engine', 'ejs')
 
-
-//Iniciar el sv 
-
-app.listen(app.get('port'), () => {
-    console.log('El servidor esta en el puerto', app.get('port'));
-});
-
 //Mid
 
 app.use(morgan('dev'));
@@ -33,9 +27,15 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-app.use(passport.initialize);
+app.use(passport.initialize());
 app.use(passport.session());
 
 
 //Routas
 app.use('/', require('./routes/index'));
+
+//Iniciar el sv 
+
+app.listen(app.get('port'), () => {
+    console.log('El servidor esta en el puerto', app.get('port'));
+});
