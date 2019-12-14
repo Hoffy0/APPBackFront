@@ -10,8 +10,8 @@ router.get('/singup', (req, res, next) => {
     res.render('singup')
 });
 ///////////////////////////////////////////////////////////////////////////
-router.post('/singup', passport.authenticate('local-singup', {
-    successRedirect: '/',
+router.post('/singup', passport.authenticate('local-signup', {
+    successRedirect: '/profile',
     failureRedirect: '/singup',
     passReqToCallBack: true
 }));

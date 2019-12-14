@@ -16,15 +16,23 @@ passport.deserializeUser(async (id, done) => {
 });
 
 ////////////////////////////////////////////////////////////////////
-passport.use('local-singup', new LS({
+passport.use('local-signup', new LS({
     usernameField: 'email',
     passwordField: 'password',
     passReToCallBack: true
-}, async (email, password, done) => {
-    const user = new User()
-    user.email = email;
-    user.password = password;
-    await user.save();
-    done(null, user);
+}, async (req, email, password, done) => {
+       const user = await User.findOne({'email': email})
+       console.log(user)
+        if(user) {
+            return done(null, false, req.flash('signupMessage', 'The Email is already Taken.'));
+        }
+        else{
+    const newUser = new User();
+    newUser.email = email;
+    newUser.password = newUser.encryptarPass(password);
+console.log(newUser)
+    await newUser.save();
+    done(null, newUser);
+     }
 }));
 /////////////////////////////////////////////////////////////////////
