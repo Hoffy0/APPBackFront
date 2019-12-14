@@ -11,8 +11,8 @@ router.get('/singup', (req, res, next) => {
 });
 ///////////////////////////////////////////////////////////////////////////
 router.post('/singup', passport.authenticate('local-singup', {
-    succesRedirect: '/',
-    faildureRedirect: '/singup',
+    successRedirect: '/',
+    failureRedirect: '/singup',
     passReqToCallBack: true
 }));
 ///////////////////////////////////////////////////////////////////////////
