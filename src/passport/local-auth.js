@@ -12,6 +12,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
     const user = await User.findById(id);
     done(null, user);
+
 });
 
 ////////////////////////////////////////////////////////////////////
@@ -19,7 +20,7 @@ passport.use('local-singup', new LS({
     usernameField: 'email',
     passwordField: 'password',
     passReToCallBack: true
-}, async (email, password, req, done) => {
+}, async (email, password, done) => {
     const user = new User()
     user.email = email;
     user.password = password;
